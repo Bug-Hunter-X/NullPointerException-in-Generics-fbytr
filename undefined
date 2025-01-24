@@ -1,0 +1,33 @@
+```scala
+class MyClass[T](val value: T) {
+  def printValue(): Unit = {
+    println(value)
+  }
+}
+
+object MainObject {
+  def main(args: Array[String]): Unit = {
+    val myInt = new MyClass(10)
+    myInt.printValue()  //Prints 10
+    
+    val myString = new MyClass("Hello")
+    myString.printValue() // Prints Hello
+    
+    val myList = new MyClass(List(1,2,3))
+    myList.printValue() //Prints List(1, 2, 3)
+
+    //Solution 1: Using Option[T]
+    val myNullOption = new MyClass(Option(null))
+    println(myNullOption.value) //Prints None
+
+    //Solution 2: Adding type constraint (only for reference types)
+    // Add a type constraint to T such that it is not a value type to prevent null being passed
+    //This approach won't work for Int, Double, etc. types
+    // class MyClass[T <: AnyRef](val value: T) {
+    // def printValue(): Unit = {
+    // println(value) 
+    // }
+    // }
+  }
+}
+```
